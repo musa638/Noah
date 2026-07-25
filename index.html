@@ -137,6 +137,22 @@
     padding:36px 8px 26px;min-height:200px;
   }
   .wrapper-img{max-width:90%;max-height:100%;object-fit:contain}
+  .unwrap{
+    position:relative;width:90%;height:100%;max-height:220px;
+    transition:transform .45s cubic-bezier(.22,.9,.32,1);
+    transform-origin:65% 100%;
+  }
+  .unwrap:hover{transform:rotate(-30deg) translateY(-8px)}
+  .unwrap img{
+    position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;object-fit:contain;
+  }
+  .unwrap-raw{opacity:1}
+  .unwrap-wrapped{
+    opacity:1;
+    clip-path:inset(0 0 0 0);
+    transition:clip-path .45s cubic-bezier(.22,.9,.32,1);
+  }
+  .unwrap:hover .unwrap-wrapped{clip-path:inset(0 35% 0 0)}
   .bar{
     width:80%;max-width:260px;height:96px;border-radius:8px;position:relative;
     transform:rotate(-8deg);
@@ -239,9 +255,9 @@
 
 <script>
   const bars = [
-    {flavor:"Chocolate Chip Cookie Dough", price:"$39.00 | 12 bars", tags:[{t:"Gold",c:"dark"}], desc:"", wrap:"w-gold", label:"", labeltxt:"Chocolate Chip Cookie Dough", img:"Bars/cookie%20dough%20no%20bg%20.png", barColor:"#e3c39a"},
+    {flavor:"Chocolate Chip Cookie Dough", price:"$39.00 | 12 bars", tags:[{t:"Gold",c:"dark"}], desc:"", wrap:"w-gold", label:"", labeltxt:"Chocolate Chip Cookie Dough", img:"Bars/cookie%20dough%20no%20bg%20.png", rawImg:"Bars/raw%20normal%20bar%20.png", barColor:"#e3c39a"},
     {flavor:"Red Velvet", price:"$39.00 | 12 bars", tags:[{t:"New",c:"new"}], desc:"Velvety cocoa crumb with a cream-cheese swirl.", wrap:"w-berry", label:"berry", labeltxt:"Red Velvet Flavored Bar", img:"Bars/red%20velvet%20no%20bg.png", barColor:"#a5293f"},
-    {flavor:"Peanut Butter Chocolate Chunk", price:"$39.00 | 12 bars", tags:[{t:"28g Protein",c:"dark"},{t:"0g Sugar",c:"dark"}], desc:"Sweet-salty peanut dough with rich chocolate.", wrap:"w-gold", label:"", labeltxt:"Peanut Butter Chocolate Chunk", img:"Bars/peanut%20no%20bg.png", barColor:"#dfba8c"},
+    {flavor:"Peanut Butter Chocolate Chunk", price:"$39.00 | 12 bars", tags:[{t:"28g Protein",c:"dark"},{t:"0g Sugar",c:"dark"}], desc:"Sweet-salty peanut dough with rich chocolate.", wrap:"w-gold", label:"", labeltxt:"Peanut Butter Chocolate Chunk", img:"Bars/peanut%20no%20bg.png", rawImg:"Bars/raw%20normal%20bar%20peanut.png", barColor:"#dfba8c"},
     {flavor:"Blueberry Pie", price:"$39.00 | 12 bars", tags:[{t:"Back in stock",c:""}], desc:"Bright berry with a buttery crust note.", wrap:"w-plum", label:"plum", labeltxt:"Blueberry Pie Flavored Bar", img:"Bars/bluebery%20no%20bg.png", barColor:"#7c5a95"},
     {flavor:"Mint Chocolate Chip", price:"$39.00 | 12 bars", tags:[{t:"New",c:"new"}], desc:"Cool mint studded with dark chocolate.", wrap:"w-mint", label:"mint", labeltxt:"Mint Chocolate Chip Flavored Bar", img:"Bars/mint%20no%20bg.png", barColor:"#5e9e6a"},
     {flavor:"Double Chocolate", price:"$39.00 | 12 bars", tags:[{t:"150 Calories",c:"dark"}], desc:"Deep cocoa, fudge-forward and dense.", wrap:"w-cocoa", label:"cocoa", labeltxt:"Double Chocolate Flavored Bar", barColor:"#6b4a30"},
@@ -251,7 +267,11 @@
   grid.innerHTML = bars.map(b => `
     <article class="card">
       <div class="art">
-        ${b.img ? `<img class="wrapper-img" src="${b.img}" alt="${b.flavor}">` : `
+        ${b.rawImg ? `
+        <div class="unwrap">
+          <img class="unwrap-raw" src="${b.rawImg}" alt="${b.flavor} unwrapped">
+          <img class="unwrap-wrapped" src="${b.img}" alt="${b.flavor}">
+        </div>` : b.img ? `<img class="wrapper-img" src="${b.img}" alt="${b.flavor}">` : `
         <div class="bar ${b.wrap}">
           <span class="logo">Noah<sup>™</sup></span>
           <span class="label ${b.label}">${b.labeltxt}</span>
