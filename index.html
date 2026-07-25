@@ -47,6 +47,8 @@
     border-bottom:1px solid var(--line);
   }
   .nav-left{display:flex;align-items:center;gap:40px}
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:26px;height:20px;background:none;border:none;cursor:pointer;padding:0}
+  .hamburger span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px}
   .brand{font-family:'Fraunces',serif;font-size:30px;font-weight:500;letter-spacing:.02em}
   .brand sup{font-size:11px;top:-1em}
   .nav-links{display:flex;gap:30px;font-size:15px}
@@ -200,15 +202,29 @@
   .icon-btn:hover{transform:scale(1.06)}
 
   footer{border-top:1px solid var(--line);padding:40px;text-align:center;color:var(--muted);font-size:13px}
-  @media(max-width:640px){nav{padding:18px 20px;flex-wrap:wrap;gap:14px}.nav-links{order:3;width:100%;justify-content:center;gap:22px}.hero,.shop{padding-left:20px;padding-right:20px}}
+  @media(max-width:640px){
+    nav{padding:16px 20px;position:relative}
+    .hamburger{display:flex}
+    .nav-links{
+      display:none;position:absolute;top:100%;left:0;width:100%;
+      flex-direction:column;background:var(--panel);border-bottom:1px solid var(--line);
+      padding:18px 20px;gap:18px;z-index:20;
+    }
+    nav.nav-open .nav-links{display:flex}
+    .nav-right a:not(.cart){display:none}
+    .hero,.shop{padding-left:20px;padding-right:20px}
+  }
 </style>
 </head>
 <body>
 
   <div class="announce"><a href="#">3rd party tested for protein content and purity.</a></div>
 
-  <nav>
+  <nav id="siteNav">
     <div class="nav-left">
+      <button class="hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <div class="brand">Noah<sup>™</sup></div>
       <div class="nav-links">
         <a href="#">Home</a>
@@ -221,6 +237,13 @@
       <a href="#" class="cart">Cart&nbsp;&nbsp;0</a>
     </div>
   </nav>
+  <script>
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      const nav = document.getElementById('siteNav');
+      const open = nav.classList.toggle('nav-open');
+      document.getElementById('menuToggle').setAttribute('aria-expanded', open);
+    });
+  </script>
 
   <!-- HERO -->
   <header class="hero">
