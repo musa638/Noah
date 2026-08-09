@@ -45,11 +45,18 @@
   .brand sup{font-size:11px;top:-1em}
   .nav-links{display:flex;gap:30px;font-size:15px}
   .nav-links a{color:var(--ink);opacity:.85;transition:opacity .2s;cursor:pointer}
+  .nav-links a.mobile-only{display:none}
   .nav-links a:hover{opacity:1}
-  .nav-right{display:flex;align-items:center;gap:20px}
-  .cart-btn{
+  .nav-right{display:flex;align-items:center;gap:22px}
+  .nav-right a.nav-text-link{font-size:15px;color:var(--ink);opacity:.85;transition:opacity .2s}
+  .nav-right a.nav-text-link:hover{opacity:1}
+  .icon-btn-nav{
     background:none;border:none;color:var(--ink);cursor:pointer;
-    display:flex;align-items:center;justify-content:center;padding:6px;
+    display:flex;align-items:center;justify-content:center;padding:4px;
+  }
+  .cart-pill{
+    background:#fff;color:#111;border-radius:999px;
+    padding:11px 22px;font-size:15px;font-weight:500;font-family:Arial,sans-serif;
   }
 
   /* buttons */
@@ -92,13 +99,20 @@
   }
   .qs-item{display:flex;flex-direction:column;align-items:center;text-align:center}
   .qs-item img{
-    width:200px;height:200px;object-fit:contain;
+    width:160px;height:160px;object-fit:contain;
     margin-bottom:20px;
   }
   .qs-item h3{font-size:34px;margin-bottom:6px;color:#111}
   .qs-item p{color:#000;font-size:18px;font-family:Arial,sans-serif}
   @media(max-width:900px){.quick-stats{grid-template-columns:repeat(2,1fr);gap:36px 24px;padding:48px 30px}}
-  @media(max-width:640px){.quick-stats{grid-template-columns:1fr;gap:36px;padding:40px 20px}.qs-item img{width:100px;height:100px;margin-bottom:14px}.qs-item h3{font-size:18px}}
+  @media(max-width:640px){
+    .quick-stats{grid-template-columns:1fr;gap:36px;padding:40px 20px;justify-items:center}
+    .qs-item{width:100%;align-items:center}
+    .qs-item img{width:80px;height:80px;margin-bottom:4px;margin-left:auto;margin-right:auto}
+    .qs-item h3{font-size:32px;text-align:center;width:100%}
+    .qs-item:nth-child(4) h3{font-size:34px}
+    .qs-item p{font-size:13px;text-align:center;width:100%}
+  }
 
   /* compare section */
   .compare{
@@ -251,9 +265,55 @@
   .icon-btn.add{background:var(--pill);color:#111;border-color:var(--pill)}
   .icon-btn:hover{transform:scale(1.06)}
 
-  footer{border-top:1px solid var(--line);padding:40px;text-align:center;color:var(--muted);font-size:13px;font-family:Arial,sans-serif}
+  /* site footer */
+  .site-footer{
+    background:#000;border-top:1px solid var(--line);
+    padding:70px 40px 30px;font-family:Arial,sans-serif;
+  }
+  .footer-top{display:flex;justify-content:space-between;gap:60px;flex-wrap:wrap;margin-bottom:60px}
+  .footer-signup{max-width:380px}
+  .footer-signup h3{font-family:Arial,sans-serif;font-size:20px;font-weight:400;margin-bottom:20px}
+  .signup-toggle{display:flex;gap:10px;margin-bottom:18px}
+  .toggle-btn{
+    border-radius:999px;padding:10px 26px;font-size:14px;font-family:Arial,sans-serif;
+    background:transparent;color:var(--ink);border:1px solid #4a4a4a;cursor:pointer;
+  }
+  .toggle-btn.active{background:#fff;color:#111;border-color:#fff}
+  .signup-form{
+    display:flex;align-items:center;background:var(--panel-2);border-radius:8px;
+    padding:4px 4px 4px 16px;margin-bottom:16px;
+  }
+  .signup-form input{
+    flex:1;background:transparent;border:none;outline:none;color:var(--ink);
+    font-family:Arial,sans-serif;font-size:14px;padding:12px 0;
+  }
+  .signup-form input::placeholder{color:var(--muted)}
+  .signup-form button{
+    width:34px;height:34px;border-radius:50%;border:none;background:transparent;
+    color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  }
+  .footer-disclaimer{color:var(--muted);font-size:12px;line-height:1.5}
+  .footer-links{display:flex;gap:60px;flex-wrap:wrap}
+  .footer-col{display:flex;flex-direction:column;gap:14px;min-width:140px}
+  .footer-col h4{font-family:Arial,sans-serif;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:4px}
+  .footer-col a{color:var(--ink);font-size:14px;opacity:.9}
+  .footer-col a:hover{opacity:1;text-decoration:underline}
+  .footer-social{border-top:1px solid var(--line);padding:30px 0;margin-bottom:20px}
+  .footer-social h4{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:16px}
+  .social-icons{display:flex;gap:18px}
+  .social-icons a{color:var(--ink);display:flex}
+  .social-icons a:hover{opacity:.7}
+  .footer-bottom{
+    display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+    color:var(--muted);font-size:13px;
+  }
+  .footer-bottom-left{display:flex;gap:24px;flex-wrap:wrap}
+  .footer-bottom-left a{color:var(--muted)}
+  .footer-bottom-left a:hover{color:var(--ink)}
+  @media(max-width:900px){.footer-top{flex-direction:column;gap:40px}.footer-links{gap:36px}}
+  @media(max-width:640px){.site-footer{padding:50px 20px 24px}.footer-links{gap:30px}.footer-col{min-width:120px}}
   @media(max-width:640px){
-    nav{padding:16px 20px;position:relative}
+    nav{padding:16px 20px;position:relative;gap:28px}
     .hamburger{display:flex}
     .nav-links{
       display:none;position:absolute;top:100%;left:0;width:100%;
@@ -274,7 +334,10 @@
     #col1Head .mini-bar-lg img{object-fit:contain;object-position:center 55%;transform:scale(1.25)}
     #col2Head .mini-bar-lg img{transform:scale(1.15)}
     .stat-num{font-size:26px}
+    .stat-heading{font-size:32px}
     .shop-banner img{max-height:220px}
+    .nav-right .nav-text-link{display:none}
+    .nav-links a.mobile-only{display:block}
   }
 </style>
 </head>
@@ -289,16 +352,19 @@
       <div class="nav-links">
         <a data-page="1">Home</a>
         <a data-page="2">Shop</a>
+        <a href="#">About</a>
+        <a href="#" class="mobile-only">Wholesale</a>
       </div>
     </div>
     <div class="nav-right">
-      <button class="cart-btn" aria-label="Cart">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="21" r="1"></circle>
-          <circle cx="20" cy="21" r="1"></circle>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      <a href="#" class="nav-text-link">Wholesale</a>
+      <button class="icon-btn-nav" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"></circle>
+          <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path>
         </svg>
       </button>
+      <a href="#" class="cart-pill">Cart&nbsp;&nbsp;0</a>
     </div>
   </nav>
 
@@ -320,7 +386,7 @@
 
     <section class="quick-stats">
       <div class="qs-item">
-        <img src="Soft%20Launch%20Website%20/Media/Amino-transparent.png" alt="Protein">
+        <img src="Soft%20Launch%20Website%20/Media/Amino.png" alt="Protein">
         <h3>28g Protein</h3>
         <p>Get More.</p>
       </div>
@@ -330,7 +396,7 @@
         <p>Keep them in check.</p>
       </div>
       <div class="qs-item">
-        <img src="Soft%20Launch%20Website%20/Media/100pct-transparent.png" alt="Protein Quality">
+        <img src="Soft%20Launch%20Website%20/Media/100%25.png" alt="Protein Quality">
         <h3>Protein Quality</h3>
         <p>Switch to better.</p>
       </div>
@@ -404,8 +470,83 @@
       </div>
       <div class="grid" id="grid"></div>
     </section>
-    <footer>Noah&trade; &mdash; the optimal protein for your optimal form.</footer>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-signup">
+        <h3>Don't miss out on Noah updates.</h3>
+        <div class="signup-toggle">
+          <button type="button" class="toggle-btn active">Email</button>
+          <button type="button" class="toggle-btn">SMS</button>
+        </div>
+        <form class="signup-form" onsubmit="return false">
+          <input type="email" placeholder="Enter Your Email." required>
+          <button type="submit" aria-label="Submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+          </button>
+        </form>
+        <p class="footer-disclaimer">*By completing this form you are signing up to receive our marketing and can unsubscribe at any time.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">Track your order</a>
+          <a href="#">Help center</a>
+          <a href="#">FAQs</a>
+          <a href="#">Contact us</a>
+          <a href="#">Satisfaction Guarantee</a>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <a href="#">About our bar</a>
+          <a href="#">Our story</a>
+          <a href="#">Third-party test results</a>
+          <a href="#">Careers</a>
+          <a href="#">Blog</a>
+          <a href="#">Reviews</a>
+        </div>
+        <div class="footer-col">
+          <h4>Partnership</h4>
+          <a href="#">Wholesale</a>
+          <a href="#">Ambassador program</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy policy</a>
+          <a href="#">Terms of service</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-social">
+      <h4>Social</h4>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+        </a>
+        <a href="#" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3.2v13.6a3 3 0 1 1-2.4-2.94V9.3a6.1 6.1 0 1 0 5.6 6.08V8.9a7.7 7.7 0 0 0 4.5 1.44V7.1a4.5 4.5 0 0 1-4.5-4.5z"></path></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6C16.4 3.56 15.4 3.47 14.25 3.47c-2.4 0-4.05 1.46-4.05 4.15V9.9H7.5V13h2.7v8h3.3z"></path></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0zM3.4 8.75h3.08V21H3.4V8.75zm6.2 0h2.95v1.68h.04c.41-.78 1.42-1.6 2.93-1.6 3.13 0 3.71 2.06 3.71 4.74V21h-3.08v-5.4c0-1.29-.02-2.94-1.79-2.94-1.8 0-2.08 1.4-2.08 2.85V21H9.6V8.75z"></path></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <a href="#">Your Privacy Choices</a>
+        <a href="#">California Privacy</a>
+      </div>
+      <div class="footer-bottom-right">&copy; 2026 Noah</div>
+    </div>
+  </footer>
 
 <script>
   // ---- page toggle ----
@@ -415,7 +556,7 @@
     window.scrollTo(0,0);
   }
   document.querySelectorAll('.buy-now').forEach(b => b.addEventListener('click', () => showPage(2)));
-  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => showPage(Number(a.dataset.page))));
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a => a.addEventListener('click', () => showPage(Number(a.dataset.page))));
 
   document.getElementById('menuToggle').addEventListener('click', () => {
     const nav = document.getElementById('siteNav');
@@ -479,6 +620,20 @@
   renderNoahColumn();
   renderTray();
   renderTable();
+
+  // ---- footer signup toggle ----
+  document.querySelectorAll('.signup-toggle .toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.signup-toggle .toggle-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const input = document.querySelector('.signup-form input');
+      if (input) {
+        const isEmail = btn.textContent.trim() === 'Email';
+        input.type = isEmail ? 'email' : 'tel';
+        input.placeholder = isEmail ? 'Enter Your Email.' : 'Enter Your Phone Number.';
+      }
+    });
+  });
 
   // ---- shop grid ----
   const bars = [
