@@ -66,8 +66,8 @@
   /* hero */
   .hero{
     position:relative;
-    min-height:82vh;
-    min-height:82dvh;
+    min-height:100vh;
+    min-height:100dvh;
     display:flex;align-items:center;justify-content:center;
     padding:80px 40px;
     overflow:hidden;
@@ -84,6 +84,21 @@
   }
   .hero .sub{margin-top:22px;color:var(--muted);font-size:17px;font-family:Arial,sans-serif}
   .hero-cta{margin-top:34px}
+
+  /* quick stats */
+  .quick-stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+    padding:64px 40px;background:#fff;
+  }
+  .qs-item{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .qs-item img{
+    width:200px;height:200px;object-fit:contain;
+    margin-bottom:20px;
+  }
+  .qs-item h3{font-size:34px;margin-bottom:6px;color:#111}
+  .qs-item p{color:#000;font-size:18px;font-family:Arial,sans-serif}
+  @media(max-width:900px){.quick-stats{grid-template-columns:repeat(2,1fr);gap:36px 24px;padding:48px 30px}}
+  @media(max-width:640px){.quick-stats{grid-template-columns:1fr;gap:36px;padding:40px 20px}.qs-item img{width:100px;height:100px;margin-bottom:14px}.qs-item h3{font-size:18px}}
 
   /* compare section */
   .compare{
@@ -302,6 +317,29 @@
         </div>
       </div>
     </header>
+
+    <section class="quick-stats">
+      <div class="qs-item">
+        <img src="Soft%20Launch%20Website%20/Media/Amino-transparent.png" alt="Protein">
+        <h3>28g Protein</h3>
+        <p>Get More.</p>
+      </div>
+      <div class="qs-item">
+        <img src="Soft%20Launch%20Website%20/Media/Cals.png" alt="Calories">
+        <h3>170 Calories</h3>
+        <p>Keep them in check.</p>
+      </div>
+      <div class="qs-item">
+        <img src="Soft%20Launch%20Website%20/Media/100pct-transparent.png" alt="Protein Quality">
+        <h3>Protein Quality</h3>
+        <p>Switch to better.</p>
+      </div>
+      <div class="qs-item">
+        <img src="Soft%20Launch%20Website%20/Media/taste.png" alt="Taste">
+        <h3>Taste</h3>
+        <p>Keep the good part.</p>
+      </div>
+    </section>
 
     <section class="compare">
       <div class="compare-left">
